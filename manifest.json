@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Deck Bridge",
+  "version": "1.1",
+  "description": "Send decks from Piltover Archive to TCG-Arena in one click",
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://piltoverarchive.com/decks/view/*"],
+      "js": ["content-piltover.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://piltoverarchive.com/deckbuilder*"],
+      "js": ["content-builder.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://tcg-arena.fr/*"],
+      "js": ["content-tcgarena.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
